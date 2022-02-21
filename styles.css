@@ -1,0 +1,55 @@
+.caligraph{
+                                color: black;
+                                font-family: monospace;
+                                font-size: 40px;
+                                text-align: center;
+                        }
+			/* website background */
+			.bg-style{
+				background: url("DSCF3151.jpg") no-repeat center center fixed;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				background-size: cover;
+				background-color: rgba(255,255,255,0.5);
+				background-blend-mode: lighten;
+				font-family: monospace;
+			}
+			.border-sec{
+				border-radius: 25px;
+				margin: 20px;
+				padding: 20px;
+				background: linear-gradient(35deg, rgba(204,255,255,0.3),rgba(255,255,204,0.3));
+				
+			}
+			#navbar{
+				position: relative;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				background-color: rgba(76,153,0,0.1);
+			}
+			nav ul{
+				margin: 0px;
+				padding: 5px 0px 5px 30px;
+			}
+			nav li{
+				display: inline;
+				margin-right: 20px;
+			}
+			.nav-deco{
+				text-decoration: none;
+				font-weight: 600;
+				font-size: 20px;
+				color: black;
+			}
+			a{
+				text-decoration: none;
+			}
+			footer{
+				background-color: rgba(76,153,0,0.1);
+				padding: 5px;
+				margin: 10px;
+				font-weight: 300;
+				font-style: italic;
+				text-align: right;
+			}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+		<script>
+			function get_date(){
+				var n = new Date();
+				var y = n.getFullYear();
+				var m = n.getMonth()+1;
+				var d = n.getDate();
+				return document.getElementById("copyright").innerHTML = "&copy;Minh Vu "+y+"/"+m+"/"+d;
+			}
+		</script>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+                <title>Minh D.T. Vu</title>
+		<!--add page icon to title-->
+		<link rel="icon" href="./profile.jpg" type="image/x-icon">
+		<link rel="stylesheet" href="./styles.css" type="text/css">
+        </head>
+        <body class="bg-style" onload=get_date()>
+		<header>
+			<h1 class="caligraph">-----VU DUC TUAN MINH-----</h1>
+			<!--<h2 class="caligraph" style="
+			color: rgb(153,153,255);
+			margin: 0px 0px 0px 0px">Takenori Toshiaki</h2>-->
+			<h1 class="caligraph" style="color: rgb(50,100,255);
+				margin: 0px 0px 0px 0px;
+				padding: 0px 0px 0px 0px;">武徳俊明</h1>
+			<nav id="navbar">
+				<ul>
+					<li><a class="nav-deco" href="">Profile</a></li>
+					<li><a class="nav-deco" href="">Blog</a></li>
+					<li><a class="nav-deco" href="">Gallery</a></li>
+					<li><a class="nav-deco" href="">Research</a></li>
+					<li><a class="nav-deco" href="">Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="border-sec" style="font-size: 20px;">
+			<h3>PROFILE:</h3>
+			<p>Curriculum Vitae: <a href="cv.pdf" target="_blank">VU DUC TUAN MINH</a></p>
+			<p>Github: <a href="https://github.com/minhearn" target="_blank">minhearn</a></p>
+			<p>Linkedin: <a href="https://www.linkedin.com/in/tuan-minh-vu-duc-746b301a4/" target="_blank">Tuan Minh Vu Duc</a></p>
+		</div>
+		<br>
+		<footer id="copyright"></footer>
+
+        </body>
+	</html> 
+
