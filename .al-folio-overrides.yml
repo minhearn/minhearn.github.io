@@ -22,6 +22,13 @@ overrides:
     upstream_sha256: 646fec8d5d650160708cae15eaff9f4dee1dc9f7214fef50b898ef574b243fc8
     local_sha256: 06d931b085cb7d7c8437d991566f3b2b703d6a27ddaebf0e0db6c21cb1ea02d1
     acknowledged_at: "2026-07-05"
+  _sass/_themes.scss:
+    owner: al_folio_core
+    gem_version: 1.0.11
+    upstream_path: _sass/_themes.scss
+    upstream_sha256: b581e43dcfbf21c14f388e2b585474c886fad62f6b5a0444f7832e7f69745f1f
+    local_sha256: b581e43dcfbf21c14f388e2b585474c886fad62f6b5a0444f7832e7f69745f1f
+    acknowledged_at: "2026-07-10"
   _sass/_variables.scss:
     owner: al_folio_core
     gem_version: 1.0.11

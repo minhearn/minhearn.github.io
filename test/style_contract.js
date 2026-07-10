@@ -62,8 +62,11 @@ if (/gem 'al_math',\s*:git =>/.test(gemfile)) {
 }
 
 // _includes, _layouts, and _sass are allowed to exist only for these explicitly acknowledged,
-// site-specific files: the three `_sass/*.scss` and `_includes/cv/render.liquid` entries are tracked
-// overrides of al_folio_core/al_folio_cv templates (see .al-folio-overrides.yml), and
+// site-specific files: the `_sass/*.scss` and `_includes/cv/render.liquid` entries are tracked
+// overrides of al_folio_core/al_folio_cv templates (see .al-folio-overrides.yml) — note
+// `_sass/_themes.scss` must stay local even though its contents match upstream verbatim, because its
+// `@use "variables"` resolves relative to its own directory, and only a local copy picks up this
+// site's `_sass/_variables.scss` sage-green override instead of the gem's default purple — and
 // `_layouts/gallery.liquid` is a bespoke layout for this site's photo gallery, which has no upstream
 // gem equivalent to own it. Any other file under these directories is still a boundary violation.
 const acknowledgedScopedFiles = new Set([
@@ -72,6 +75,7 @@ const acknowledgedScopedFiles = new Set([
   "_sass/_components.scss",
   "_sass/_publications.scss",
   "_sass/_variables.scss",
+  "_sass/_themes.scss",
 ]);
 
 const listFilesRecursive = (relDir) => {
