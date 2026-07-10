@@ -1,0 +1,133 @@
+---
+layout: default
+---
+{% assign photos = site.photos | sort: 'date' | reverse %}
+
+{% assign contexts = '' | split: '' %}
+{% assign filmstocks = '' | split: '' %}
+{% assign locations = '' | split: '' %}
+{% for photo in photos %}
+  {% if photo.context %}
+    {% assign contexts = contexts | concat: photo.context %}
+  {% endif %}
+  {% if photo.filmstock %}
+    {% assign one = photo.filmstock | split: '|~|' %}
+    {% assign filmstocks = filmstocks | concat: one %}
+  {% endif %}
+  {% if photo.location %}
+    {% assign one = photo.location | split: '|~|' %}
+    {% assign locations = locations | concat: one %}
+  {% endif %}
+{% endfor %}
+{% assign unique_contexts = contexts | uniq | sort %}
+{% assign unique_filmstocks = filmstocks | uniq | sort %}
+{% assign unique_locations = locations | uniq | sort %}
+
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <p class="post-description">{{ page.description }}</p>
+  </header>
+
+  <div class="gallery-filter-groups">
+    {% if unique_filmstocks.size > 0 %}
+      <div class="gallery-filter-row">
+        <span class="gallery-filter-label">Films:</span>
+        <div class="gallery-filters" role="group" aria-label="Filter photos by filmstock" data-filter-group="filmstock">
+          <button type="button" class="gallery-filter active" data-value="all">All</button>
+          {% for value in unique_filmstocks %}
+            <button type="button" class="gallery-filter" data-value="{{ value | slugify }}">{{ value }}</button>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if unique_locations.size > 0 %}
+      <div class="gallery-filter-row">
+        <span class="gallery-filter-label">Countries:</span>
+        <div class="gallery-filters" role="group" aria-label="Filter photos by location" data-filter-group="location">
+          <button type="button" class="gallery-filter active" data-value="all">All</button>
+          {% for value in unique_locations %}
+            <button type="button" class="gallery-filter" data-value="{{ value | slugify }}">{{ value }}</button>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    {% if unique_contexts.size > 0 %}
+      <div class="gallery-filter-row">
+        <span class="gallery-filter-label">Others:</span>
+        <div class="gallery-filters" role="group" aria-label="Filter photos by context" data-filter-group="context">
+          <button type="button" class="gallery-filter active" data-value="all">All</button>
+          {% for value in unique_contexts %}
+            <button type="button" class="gallery-filter" data-value="{{ value | slugify }}">{{ value }}</button>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="gallery-grid">
+    {% for photo in photos %}
+      {% capture context_slugs %}{% for value in photo.context %}{{ value | slugify }} {% endfor %}{% endcapture %}
+      <figure
+        class="gallery-item"
+        data-context="{{ context_slugs | strip }}"
+        data-filmstock="{{ photo.filmstock | slugify }}"
+        data-location="{{ photo.location | slugify }}"
+      >
+        <a href="{{ photo.image | relative_url }}" data-lightbox="gallery" data-title="{{ photo.caption | escape }}">
+          {% include figure.liquid path=photo.image alt=photo.alt loading="lazy" class="gallery-img" %}
+        </a>
+        {% if photo.caption %}
+          <figcaption class="caption">{{ photo.caption }}</figcaption>
+        {% endif %}
+        <div class="gallery-item-tags">
+          {% if photo.filmstock -%}
+            <span class="gallery-tag-badge">{{ photo.filmstock }}</span>
+          {%- endif %}
+          {% if photo.location -%}
+            <span class="gallery-tag-badge">{{ photo.location }}</span>
+          {%- endif %}
+          {% for value in photo.context %}
+            <span class="gallery-tag-badge">{{ value }}</span>
+          {% endfor %}
+        </div>
+      </figure>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterGroups = document.querySelectorAll('[data-filter-group]');
+    const items = document.querySelectorAll('.gallery-item');
+    const selected = {};
+
+    filterGroups.forEach((group) => {
+      const key = group.getAttribute('data-filter-group');
+      selected[key] = 'all';
+
+      group.querySelectorAll('.gallery-filter').forEach((button) => {
+        button.addEventListener('click', () => {
+          selected[key] = button.getAttribute('data-value');
+
+          group.querySelectorAll('.gallery-filter').forEach((b) => b.classList.remove('active'));
+          button.classList.add('active');
+
+          items.forEach((item) => {
+            const matches = Object.keys(selected).every((groupKey) => {
+              const value = selected[groupKey];
+              if (value === 'all') {
+                return true;
+              }
+              const itemValues = (item.getAttribute(`data-${groupKey}`) || '').split(' ');
+              return itemValues.includes(value);
+            });
+            item.classList.toggle('is-hidden', !matches);
+          });
+        });
+      });
+    });
+  });
+</script>
