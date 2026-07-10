@@ -61,7 +61,37 @@ if (/gem 'al_math',\s*:git =>/.test(gemfile)) {
   failures.push("`Gemfile` must not use git-branch pin for `al_math`; use released gem version.");
 }
 
-for (const forbiddenPath of ["_includes", "_layouts", "_sass", "_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
+// _includes, _layouts, and _sass are allowed to exist only for these explicitly acknowledged,
+// site-specific files: the three `_sass/*.scss` and `_includes/cv/render.liquid` entries are tracked
+// overrides of al_folio_core/al_folio_cv templates (see .al-folio-overrides.yml), and
+// `_layouts/gallery.liquid` is a bespoke layout for this site's photo gallery, which has no upstream
+// gem equivalent to own it. Any other file under these directories is still a boundary violation.
+const acknowledgedScopedFiles = new Set([
+  "_includes/cv/render.liquid",
+  "_layouts/gallery.liquid",
+  "_sass/_components.scss",
+  "_sass/_publications.scss",
+  "_sass/_variables.scss",
+]);
+
+const listFilesRecursive = (relDir) => {
+  const absDir = path.join(root, relDir);
+  if (!fs.existsSync(absDir)) return [];
+  return fs.readdirSync(absDir, { withFileTypes: true }).flatMap((entry) => {
+    const entryRelPath = path.join(relDir, entry.name);
+    return entry.isDirectory() ? listFilesRecursive(entryRelPath) : [entryRelPath];
+  });
+};
+
+for (const scopedPath of ["_includes", "_layouts", "_sass"]) {
+  for (const filePath of listFilesRecursive(scopedPath)) {
+    if (!acknowledgedScopedFiles.has(filePath)) {
+      failures.push(`Starter must not own core component path \`${filePath}\`; move ownership to the corresponding gem.`);
+    }
+  }
+}
+
+for (const forbiddenPath of ["_scripts", "assets/tailwind", "tailwind.config.js", "assets/webfonts"]) {
   if (exists(forbiddenPath)) {
     failures.push(`Starter must not own core component path \`${forbiddenPath}\`; move ownership to the corresponding gem.`);
   }

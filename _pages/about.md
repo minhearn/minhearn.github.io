@@ -34,7 +34,7 @@ Communications Engineering at the Institute of Science Tokyo
 be advised by Professor Konstantinos Slavakis. My research
 focuses on optimization methods for reinforcement learning,
 particularly the interplay between Riemannian geometry and
-Q-function estimation. 
+Q-function estimation.
 
 I completed my Master's and Bachelor's degrees at Tokyo
 Institute of Technology, with financial support by the

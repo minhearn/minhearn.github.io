@@ -7,25 +7,25 @@ overrides:
     upstream_path: templates/cv/render.liquid
     upstream_sha256: 89c9ce23250ace91325d69ae0b8fab67ecc31466de1f09f91958c745e98a2324
     local_sha256: 9207d20a774aa084599f3e3192f02f616eb43e1bd09c147b5a68d3d3fe70c54c
-    acknowledged_at: '2026-07-05'
+    acknowledged_at: "2026-07-05"
   _sass/_components.scss:
     owner: al_folio_core
     gem_version: 1.0.11
     upstream_path: _sass/_components.scss
-    upstream_sha256: '088665537c10a0f1b996891a3a24de9e8052e0a6b01efef637288781dce8d453'
+    upstream_sha256: "088665537c10a0f1b996891a3a24de9e8052e0a6b01efef637288781dce8d453"
     local_sha256: 9a8db8a95bd4d8736a220823383a97286f74aa4b06535539f7e111dadaf504cf
-    acknowledged_at: '2026-07-05'
+    acknowledged_at: "2026-07-05"
   _sass/_publications.scss:
     owner: al_folio_core
     gem_version: 1.0.11
     upstream_path: _sass/_publications.scss
     upstream_sha256: 646fec8d5d650160708cae15eaff9f4dee1dc9f7214fef50b898ef574b243fc8
     local_sha256: 06d931b085cb7d7c8437d991566f3b2b703d6a27ddaebf0e0db6c21cb1ea02d1
-    acknowledged_at: '2026-07-05'
+    acknowledged_at: "2026-07-05"
   _sass/_variables.scss:
     owner: al_folio_core
     gem_version: 1.0.11
     upstream_path: _sass/_variables.scss
     upstream_sha256: 8a6b3e6a2dfcda6c7973dc7b19872f02d66d6c78bac677fc2dff0e272b3ebc84
     local_sha256: 70bbd0a92b8aa3629b542b6bcffa4e7fec6076be9666a8a5507d162b58be9b91
-    acknowledged_at: '2026-07-03'
+    acknowledged_at: "2026-07-03"
