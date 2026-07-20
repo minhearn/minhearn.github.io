@@ -6,7 +6,7 @@ subtitle: Ph.D. Candidate, <a href='https://www.isct.ac.jp/en'>Institute of Scie
 
 profile:
   align: right
-  image: 000020.jpg
+  image: profile.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
     <p>Institute of Science Tokyo</p>
