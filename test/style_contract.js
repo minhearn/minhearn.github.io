@@ -68,9 +68,13 @@ if (/gem 'al_math',\s*:git =>/.test(gemfile)) {
 // `@use "variables"` resolves relative to its own directory, and only a local copy picks up this
 // site's `_sass/_variables.scss` sage-green override instead of the gem's default purple — and
 // `_layouts/gallery.liquid` is a bespoke layout for this site's photo gallery, which has no upstream
-// gem equivalent to own it. Any other file under these directories is still a boundary violation.
+// gem equivalent to own it, and `_layouts/bib.liquid` is a tracked override of al_folio_core's
+// bib layout (see .al-folio-overrides.yml) that renders a SCImago quartile badge — driven by a
+// `scimago` bib field — below the venue abbr in the thumbnail column.
+// Any other file under these directories is still a boundary violation.
 const acknowledgedScopedFiles = new Set([
   "_includes/cv/render.liquid",
+  "_layouts/bib.liquid",
   "_layouts/gallery.liquid",
   "_sass/_components.scss",
   "_sass/_publications.scss",

@@ -39,6 +39,18 @@
     li {
       margin-bottom: 1rem;
 
+      .abbr a.scimago {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5rem;
+
+        img {
+          width: 100%;
+          height: auto;
+          border-radius: 0.25rem;
+        }
+      }
+
       .preview {
         display: inline-block;
       }
