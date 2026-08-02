@@ -34,6 +34,12 @@
           <img src="https://www.scimagojr.com/journal_img.php?id={{ entry.scimago }}" alt="SCImago Journal & Country Rank quartile badge">
         </a>
       {% endif %}
+      {% if entry.logo %}
+        {% assign logo_path = entry.logo | prepend: '/assets/img/conference_logos/' | relative_url %}
+        <div class="conf-logo">
+          <img src="{{ logo_path }}" alt="{{ entry.abbr }} logo">
+        </div>
+      {% endif %}
       {% if entry.preview %}
         {% if entry.preview contains '://' %}
           <img class="preview z-depth-1 rounded" src="{{ entry.preview }}">
